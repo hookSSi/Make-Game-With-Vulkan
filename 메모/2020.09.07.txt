@@ -1,0 +1,9 @@
+GLFW - window를 만들기 위한 라이브러리
+GLM - 선형대수 라이브러리
+
+Vulkan은 오브젝트의 메모리 관리를 잘해야한다. 이런 Vulkan 같은 큰 API를 위한 RAII가 있지만 
+
+이 튜토리얼에서는 API의 작동 원리를 위해 명시적으로 메모리 관리를 합니다.
+
+Vulkan의 오브젝트는 vkCreateXXX, vkAllocateXXX 식으로 메모리에 올리고
+이와 반대되는 vkDestroyXXX, vkFreeXXX로 메모리를 해제합니다. 
