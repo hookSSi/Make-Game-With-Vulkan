@@ -8,9 +8,16 @@
 
 #include <SDL.h>
 
+/* I use other github project for using cout with color */
+/* https://github.com/yurablok/colored-cout */
+#include <colored_cout.h>
+
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <vector>
+#include <string>
+#include <functional>
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
@@ -29,7 +36,7 @@ private:
 	GLFWwindow* window;
 	VkInstance vkInstance;
 
-	/// GLFW로 윈도우 생성
+	/// create window using glfw
 	void InitWindow()
 	{
 		glfwInit();
@@ -39,7 +46,7 @@ private:
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
 	}
 
-	/// Vulkan 오브젝트들을 초기화
+	/// initialize vulkan objects
 	void InitVulkan()
 	{
 		CreateInstance();
@@ -63,6 +70,14 @@ private:
 		const char** glfwExtensions;
 
 		glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+		if (glfwExtensions == NULL)
+		{
+			throw std::runtime_error("Vulkan is not available on this machine");
+		}
+		else
+		{
+			CheckRequiredExtensionsValid(glfwExtensionCount, glfwExtensions);
+		}
 
 		createInfo.enabledExtensionCount = glfwExtensionCount;
 		createInfo.ppEnabledExtensionNames = glfwExtensions;
@@ -76,7 +91,52 @@ private:
 		}
 	}
 
-	/// 매 프레임 렌더링
+	void CheckRequiredExtensionsValid(uint32_t requiredExtensionCount, const char** requiredExtensionList)
+	{
+		uint32_t extensionCount = 0;
+		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+		std::vector<VkExtensionProperties> extensions(extensionCount);
+		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
+
+		bool* checkList = new bool[requiredExtensionCount]; // extension이 사용되었는지 체크
+		for (int i = 0; i < requiredExtensionCount; i++)
+		{
+			checkList[i] = false;
+		}
+
+		std::cout << "available extensions:\n";
+		for (const auto& extension : extensions)
+		{
+			/// 해시 테이블로 좀더 간결하게 표현할 수 있지 않을까? 
+			bool isUsed = false;
+			for (int i = 0; i < requiredExtensionCount; i++)
+			{
+				if (strcmp(extension.extensionName, requiredExtensionList[i]) == 0)
+				{
+					isUsed = true;
+					checkList[i] = true;
+				}
+			}
+
+			const char* result = isUsed ? "(USED)" : "(NOT USED)";
+			clr color = isUsed ? clr::green : clr::red;
+			std::cout << '\t' << extension.extensionName << " " << color << result << clr::reset << '\n';
+		}
+
+		std::cout << "required but not available extensions:\n";
+		for (int i = 0; i < requiredExtensionCount; i++)
+		{
+			if (!checkList[i])
+			{
+				std::cout << '\t' << requiredExtensionList[i] << '\n';
+			}
+		}
+
+		delete[] checkList;
+		checkList = NULL;
+	}
+
+	/// render per frame
 	void MainLoop()
 	{
 		while (!glfwWindowShouldClose(window))
@@ -85,10 +145,13 @@ private:
 		}
 	}
 
-	/// 메모리 회수
+	/// release memories
 	void Cleanup()
 	{
+		vkDestroyInstance(vkInstance, nullptr);
+
 		glfwDestroyWindow(window);
+		
 		glfwTerminate();
 	}
 };
