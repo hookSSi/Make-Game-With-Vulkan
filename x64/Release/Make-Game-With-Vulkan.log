@@ -1,0 +1,11 @@
+﻿  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\minwindef.h(130,1): warning C4005:  'APIENTRY': 매크로 재정의
+C:\Users\HookSSi\Documents\Visual Studio 2019\Libraries\glfw\include\GLFW\glfw3.h(123): message :  'APIENTRY'의 이전 정의를 참조하십시오.
+C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\main.cpp(171,21): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\main.cpp(186,22): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\main.cpp(201,21): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다.
+  Previous IPDB not found, fall back to full compilation.
+  All 155 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  Make-Game-With-Vulkan.vcxproj -> C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\x64\Release\Make-Game-With-Vulkan.exe
