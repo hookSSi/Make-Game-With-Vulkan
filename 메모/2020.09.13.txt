@@ -1,0 +1,23 @@
+Vulkan에서 GPU를 선택하는 방법에 대한 간단한 개요
+
+Queue Famliy 개념
+
+Vulkan에서 이루어지는 모든 연산은 Queue에 추가되어 이루어지며
+
+Queue 마다 할당될 수 있는 것이 Queue마다 다를 수 있다.
+
+그런 같은 종류의 Queue를 Queue Family라 부르며 
+
+device마다 지원하는 Queue Family 범위가 다를 수 있기에 그걸 검사하는 코드를 작성해보았다.
+
+-------------------------------------------------------
+
+Physical Device가 GPU 그 자체라면 Logical Device는 그로부터 만들어지는 인터페이스라고 할 수 있다.
+
+그래서 Logical Device는 같은 GPU로부터 여러개가 만들어질 수 있다.
+
+독해가 잘 안되서 그런지 이론에 대해서는 정확히 모르겠다...
+
+Queue를 만드는 부분에서 우선순위 값을 지정해주는 걸로 봐서 OS에서 배운
+
+Multilevel Queue가 떠오르는 데 아마 비슷한 거라고 예상한다.

@@ -109,6 +109,7 @@
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.148.1\Include;C:\VulkanSDK\1.2.148.1\Third-Party\Include;C:\Users\HookSSi\Documents\Visual Studio 2019\Libraries\glfw\include;C:\Users\HookSSi\Documents\Visual Studio 2019\Libraries\colored-cout;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <StructMemberAlignment>Default</StructMemberAlignment>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,6 +151,7 @@
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.148.1\Include;C:\VulkanSDK\1.2.148.1\Third-Party\Include;C:\Users\HookSSi\Documents\Visual Studio 2019\Libraries\glfw\include;C:\Users\HookSSi\Documents\Visual Studio 2019\Libraries\colored-cout;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <StructMemberAlignment>Default</StructMemberAlignment>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,6 +164,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

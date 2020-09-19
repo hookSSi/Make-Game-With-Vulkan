@@ -1,2 +1,5 @@
 ﻿  main.cpp
+C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\main.cpp(386,21): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\main.cpp(400,22): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\main.cpp(415,21): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
   Make-Game-With-Vulkan.vcxproj -> C:\Users\HookSSi\Desktop\Make-Game-With-Vulkan\x64\Debug\Make-Game-With-Vulkan.exe
